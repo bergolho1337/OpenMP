@@ -1,0 +1,17 @@
+CC = gcc
+CC_FLAGS = -Wall -O2
+PROGRAM_NAME = parallel
+LINKER = -fopenmp
+
+all: $(PROGRAM_NAME)
+
+$(PROGRAM_NAME): $(PROGRAM_NAME).c
+	$(CC) $(CC_FLAGS) -o $@ $< $(LINKER)
+
+clear:
+	rm $(PROGRAM_NAME)
+
+rebuild:
+	$(MAKE) clear
+	rm -f count.dat
+	$(MAKE)
