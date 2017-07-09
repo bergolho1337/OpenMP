@@ -18,8 +18,10 @@ void Get_args(int argc, char* argv[], int *thread_count, int *n, int *num_method
 void Usage(char* prog_name);
 void generateData (int data[], int n);
 void Serial_CountSort (int data[], int n);
+void Parallel_CountSort (int data[], int n, int thread_count);
 void printData (int data[], int n);
 int compare (const void *a, const void *b);
+void checkSort (int data[], int n);
 
 int main(int argc, char* argv[]) 
 {
@@ -29,14 +31,15 @@ int main(int argc, char* argv[])
 
    /* Get number of threads from command line */
    Get_args(argc,argv,&thread_count,&n,&num_method);
-   omp_set_num_threads(thread_count);
 
    data = (int*)malloc(sizeof(int)*n);
    generateData(data,n);
 
    printf("[!] Size of the data vector = %d\n",n);
+   checkSort(data,n);
    //printf("Before sorting\n");
    //printData(data,n);
+   
    switch (num_method)
    {
        case 1: GET_TIME(start);
@@ -51,8 +54,15 @@ int main(int argc, char* argv[])
                elapsed = finish - start;
                printf("[!] Serial qsort = %.15lf\n",elapsed);
                break;
+       case 3: GET_TIME(start);
+               Parallel_CountSort(data,n,thread_count);
+               GET_TIME(finish);
+               elapsed = finish - start;
+               printf("[!] Parallel Counting Sort = %.15lf\n",elapsed);
+               break;
    }
 
+   checkSort(data,n);
    //printf("After sorting\n");
    //printData(data,n);
    
@@ -110,6 +120,35 @@ void Serial_CountSort (int data[], int n)
 }
 
 /*------------------------------------------------------------------
+ * Function:    Parallel_CountSort
+ * Purpose:     Parallel CountSort
+ * In args:     Integer data array and size of the vector
+ */
+void Parallel_CountSort (int data[], int n, int thread_count)
+{
+    int i, j, count;
+    int *temp = (int*)malloc(sizeof(int)*n);
+
+    omp_set_num_threads(thread_count);
+
+    #pragma omp parallel for private(i,j,count) shared(data,temp,n,thread_count)
+    for (i = 0; i < n; i++)
+    {
+        count = 0;
+        /* Count how many elements are less than data[i] */
+        for (j = 0; j < n; j++)
+        {
+            if (data[j] < data[i]) count++;
+            else if (data[j] == data[i] && j < i) count++;
+        }
+        /* Put the element in the correct position */
+        temp[count] = data[i];
+    }
+    memcpy(data,temp,n*sizeof(int));
+    free(temp);
+}
+
+/*------------------------------------------------------------------
  * Function:    Get_args
  * Purpose:     Get the command line args
  * In args:     argc, argv
@@ -140,6 +179,7 @@ void Usage(char* prog_name)
    fprintf(stderr, "   num_method is the number of the method\n");
    fprintf(stderr, "   1 - Serial CountSort\n");
    fprintf(stderr, "   2 - qsort\n");
+   fprintf(stderr, "   3 - Parallel CountSort\n");
    fprintf(stderr, "====================================================\n");
    exit(EXIT_FAILURE);
 }  /* Usage */
@@ -156,4 +196,20 @@ int compare (const void *a, const void *b)
     if (*arg1 < *arg2) return -1;
     if (*arg1 > *arg2) return 1;
     return 0;
+}
+
+/*------------------------------------------------------------------
+ * Function:  checkSort
+ * Purpose:   Check if an array is sorted
+ */
+void checkSort (int data[], int n)
+{
+    int i, sort;
+    sort = 1;
+    for (i = 1; i < n && sort; i++)
+        if (data[i] < data[i-1]) sort = 0;
+    if (sort)
+        printf("[!] The array is sorted!\n");
+    else
+        printf("[!] The array is NOT sorted!\n");
 }
