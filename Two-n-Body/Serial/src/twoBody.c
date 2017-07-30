@@ -86,14 +86,12 @@ void Compute_force (Particle *p, vect_t *forces, int q, int n)
 void solveModel (TwoBody *m)
 {
     int step, part;
-    double t;
     vect_t *forces = (vect_t*)malloc(sizeof(vect_t)*m->n);
     Particle *p = m->p;
 
     // Time loop
     for (step = 0; step < m->num_steps; step++)
     {
-        t = step*m->dt;
 
         /* Assign 0 to each element of the forces array */
         memset(forces,0,sizeof(vect_t)*m->n);

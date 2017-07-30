@@ -21,4 +21,7 @@ clean:
 	rm -f $(OBJECT_DIR)/*.o $(PROGRAM_NAME)
 	rm -f VTK/*.vtk
 
+rerun:
+	rm -f VTK/*.vtk
+
 print-%  : ; @echo $* = $($*)
