@@ -81,9 +81,6 @@ void Compute_force (Particle *p, vect_t *forces, int q, int n)
         forces[k][Y] -= forces_qk[Y];
         forces[k][Z] -= forces_qk[Z];
     }
-
-    
-
 }
 
 void solveModel (TwoBody *m)
