@@ -1,5 +1,13 @@
 #include "../include/twoBody.h"
 
+TwoBody* newTwoBody ()
+{
+    TwoBody *model = (TwoBody*)malloc(sizeof(TwoBody));
+    readInput(model);
+    //printParticle(model->p,model->n);
+    return model;
+}
+
 void readInput (TwoBody *m)
 {
     if (!scanf("%lf %d %d %d",&m->dt,&m->num_steps,&m->out_freq,&m->n)) printError("Reading input");
@@ -25,21 +33,6 @@ void printParticle (const Particle *p, int N)
         printf("%.3e\t%.3e\t%.3e\t%.3e\t%.3e\t%.3e\n",p[i].pos[X],p[i].pos[Y],p[i].pos[Z],p[i].vel[X],p[i].vel[Y],p[i].vel[Z]);
     }
     
-}
-
-void setParticle (Particle &p, double m, double x, double y, double z, double vx, double vy, double vz, double ax, double ay, double az)
-{
-    p.mass = m;
-    p.pos[X] = x; p.pos[Y] = y; p.pos[Z] = z;
-    p.vel[X] = vx; p.vel[Y] = vy; p.vel[Z] = z;
-}
-
-TwoBody* newTwoBody ()
-{
-    TwoBody *model = (TwoBody*)malloc(sizeof(TwoBody));
-    readInput(model);
-    //printParticle(model->p,model->n);
-    return model;
 }
 
 /* Compute the next postion and velocity of the particle by using Explicit Euler */
@@ -92,7 +85,6 @@ void solveModel (TwoBody *m)
     // Time loop
     for (step = 0; step < m->num_steps; step++)
     {
-
         /* Assign 0 to each element of the forces array */
         memset(forces,0,sizeof(vect_t)*m->n);
     
