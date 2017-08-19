@@ -1,6 +1,6 @@
 /*
 ------------------------------------------------------------------------------------------------
-    Basic Parallel Version of the Two-N-Body algorithm
+    Reduced Parallel Version of the Two-N-Body algorithm
         Autor: Lucas Berg
 
 - Specify the number of threads on the command line
@@ -15,6 +15,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "../include/twoBody.h"
 #include "../include/timer.h"
 
