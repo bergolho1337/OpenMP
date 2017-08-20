@@ -57,7 +57,6 @@ void Compute_force_phase1 (Particle *p, vect_t *loc_forces, vect_t *forces, int 
     double x_diff, y_diff, z_diff, dist, dist_cubed;
     vect_t forces_qk;
     int my_rank = omp_get_thread_num();
-    memset(loc_forces[my_rank*n],0,sizeof(vect_t)*n);
 
     // Phase 1
     for (k = q+1; k < n; k++)
@@ -119,12 +118,12 @@ void solveModel (TwoBody *m)
     private(step,part)
     for (step = 0; step < nsteps; step++)
     {
-        // Parallel initialization of the vector forces
+        // Parallel initialization of the local vector forces
         #pragma omp for
-        for (part = 0; part < n; part++)
-            forces[part][X] = 0, forces[part][Y] = 0, forces[part][Z] = 0;
+        for (part = 0; part < n*thread_count; part++)
+            loc_forces[part][X] = 0, loc_forces[part][Y] = 0, loc_forces[part][Z] = 0;
     
-        // Parallel computing of the forces (race condition on the inner loop of Compute_force)
+        // Parallel computing of the forces (race condition on the inner loop of Compute_force_phase1)
         #pragma omp for
         for (part = 0; part < n; part++)
             Compute_force_phase1(p,loc_forces,forces,part,n);
