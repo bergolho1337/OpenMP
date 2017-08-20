@@ -4,14 +4,17 @@ import re
 from matplotlib import pyplot
 from pylab import genfromtxt
 
-mat0 = genfromtxt("resultsBasic.dat")
-mat1 = genfromtxt("resultsReduce.dat")
+if (len(sys.argv) < 2 ):
+    print("Usage:> python " + sys.argv[0] + " <serial_data_file>")
+else:
+    filename = sys.argv[1]
+    mat = genfromtxt(filename)
 
-pyplot.grid()
-pyplot.title("Basic x Reduce")
-pyplot.xlabel("Number of particles")
-pyplot.ylabel("Time elapsed (s)")
-pyplot.plot(mat0[:,0], mat0[:,1], label="Basic",marker='o')
-pyplot.plot(mat1[:,0], mat1[:,1], label="Reduce",marker='o')
-pyplot.legend(loc=0)
-pyplot.savefig("result.pdf")
+    pyplot.grid()
+    pyplot.title("Basic x Reduce")
+    pyplot.xlabel("Number of particles")
+    pyplot.ylabel("Time elapsed (s)")
+    pyplot.plot(mat[:,0], mat[:,1], label="Basic",marker='o')
+    pyplot.plot(mat[:,0], mat[:,2], label="Reduce",marker='o')
+    pyplot.legend(loc=0)
+    pyplot.savefig("result.pdf")

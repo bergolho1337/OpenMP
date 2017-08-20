@@ -32,7 +32,7 @@ function RunSimulation {
 # ================== MAIN SCRIPT ===================================
 BASIC="Parallel-Basic"
 REDUCE="Parallel-Reduce"
-THREADS=( 1 2 4 )
+THREADS=( 1 2 4 8 )
 
 # Run the simulations with the Basic solver first
 #echo "=========================================================="

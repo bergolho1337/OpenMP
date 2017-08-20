@@ -124,7 +124,8 @@ void solveModel (TwoBody *m)
             loc_forces[part][X] = 0, loc_forces[part][Y] = 0, loc_forces[part][Z] = 0;
     
         // Parallel computing of the forces (race condition on the inner loop of Compute_force_phase1)
-        #pragma omp for
+        //#pragma omp for
+        #pragma omp for schedule(static,1)                   // Using block partition gives better results
         for (part = 0; part < n; part++)
             Compute_force_phase1(p,loc_forces,forces,part,n);
         Compute_force_phase2(loc_forces,forces,n);
