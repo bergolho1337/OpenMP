@@ -1,0 +1,67 @@
+
+Printing array of iterations:
+Iteration 1 >> Thread 0
+Iteration 2 >> Thread 0
+Iteration 3 >> Thread 0
+Iteration 4 >> Thread 0
+Iteration 5 >> Thread 0
+Iteration 6 >> Thread 0
+Iteration 7 >> Thread 0
+Iteration 8 >> Thread 0
+Iteration 9 >> Thread 0
+Iteration 10 >> Thread 0
+Iteration 11 >> Thread 0
+Iteration 12 >> Thread 0
+Iteration 13 >> Thread 0
+Iteration 14 >> Thread 0
+Iteration 15 >> Thread 0
+Iteration 16 >> Thread 0
+Iteration 17 >> Thread 1
+Iteration 18 >> Thread 1
+Iteration 19 >> Thread 1
+Iteration 20 >> Thread 1
+Iteration 21 >> Thread 1
+Iteration 22 >> Thread 1
+Iteration 23 >> Thread 1
+Iteration 24 >> Thread 1
+Iteration 25 >> Thread 1
+Iteration 26 >> Thread 1
+Iteration 27 >> Thread 1
+Iteration 28 >> Thread 1
+Iteration 29 >> Thread 1
+Iteration 30 >> Thread 1
+Iteration 31 >> Thread 1
+Iteration 32 >> Thread 1
+Iteration 33 >> Thread 2
+Iteration 34 >> Thread 2
+Iteration 35 >> Thread 2
+Iteration 36 >> Thread 2
+Iteration 37 >> Thread 2
+Iteration 38 >> Thread 2
+Iteration 39 >> Thread 2
+Iteration 40 >> Thread 2
+Iteration 41 >> Thread 2
+Iteration 42 >> Thread 2
+Iteration 43 >> Thread 2
+Iteration 44 >> Thread 2
+Iteration 45 >> Thread 2
+Iteration 46 >> Thread 2
+Iteration 47 >> Thread 2
+Iteration 48 >> Thread 2
+Iteration 49 >> Thread 3
+Iteration 50 >> Thread 3
+Iteration 51 >> Thread 3
+Iteration 52 >> Thread 3
+Iteration 53 >> Thread 3
+Iteration 54 >> Thread 3
+Iteration 55 >> Thread 3
+Iteration 56 >> Thread 3
+Iteration 57 >> Thread 3
+Iteration 58 >> Thread 3
+Iteration 59 >> Thread 3
+Iteration 60 >> Thread 3
+Iteration 61 >> Thread 3
+Iteration 62 >> Thread 3
+
+With n = 64 trapezoids, our estimate
+of the integral from 0.000000 to 3.000000 = 9.00109863281250e+00

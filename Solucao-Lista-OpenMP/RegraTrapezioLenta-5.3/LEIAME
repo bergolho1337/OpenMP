@@ -1,0 +1,30 @@
+O codigo da solucao esta na pasta Codigos
+
+Existem duas versoes do codigo do trapezio. 
+
+Na primeira a secao critica e colocada antes da funcao Local_Trap(), logo as threads ficam sendo
+executadas sequencialmente. 
+
+Na segunda versao a secao critica e colocada depois da funcao Local_Trap() e cada thread possui a
+sua soma local. Desta forma, somente a soma do valor local de cada thread sera executada sequencialmente
+na secao critica.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+1) Copiar o codigo-fonte da pasta /Codigos para a pasta /src renomeando o arquivo com o comando 'cp':
+
+$cp ./Codigos/omp_trap1.c ./src/omp_code.c 
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+2) Execute o script do speedup.
+
+$ ./run_code.sh
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+3) Copie o arquivo de tempo da pasta ./Plot para a pasta ./Resultados renomeando do seu jeito:
+
+$ cp ./Plot/times.dat ./Resultados/times_trap1.dat
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+4) Processar este arquivo com o script em Python para gerar os graficos 
+
+OBS: nao fiz isso pq no cluster nao tinha como ver o grafico com o Python.    X-(

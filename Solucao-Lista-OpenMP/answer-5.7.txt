@@ -1,0 +1,14 @@
+------------------------------------------------------------------------------------------------
+Question:
+In our first attempt to parallelize the program for estimating π, our program
+was incorrect. In fact, we used the result of the program when it was run with
+one thread as evidence that the program run with two threads was incorrect.
+Explain why we could “trust” the result of the program when it was run with
+one thread.
+------------------------------------------------------------------------------------------------
+Answer:
+The version of the estimate pi program with one thread program will always be correct because
+there will not be another thread trying to update the global sum variable.
+Besides, there will be only one thread entering the critical section, so there is no change of a
+race condition to happen with any other thread. 
+------------------------------------------------------------------------------------------------

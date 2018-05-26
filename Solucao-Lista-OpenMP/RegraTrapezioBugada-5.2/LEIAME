@@ -1,0 +1,23 @@
+O codigo da solucao esta na pasta Codigos
+
+Versao bugada do codigo do trapezio com a retirada da secao critica.
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+1) Copiar o codigo-fonte da pasta /Codigos para a pasta /src renomeando o arquivo com o comando 'cp':
+
+$cp ./Codigos/omp_trap1_bugged.c ./src/omp_code.c 
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+2) Execute o script do speedup.
+
+$ ./run_code.sh
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+3) Copie o arquivo de tempo da pasta ./Plot para a pasta ./Resultados renomeando do seu jeito:
+
+$ cp ./Plot/times.dat ./Resultados/times_trap_bugged.dat
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+4) Processar este arquivo com o script em Python para gerar os graficos 
+
+OBS: nao fiz isso pq no cluster nao tinha como ver o grafico com o Python.    X-(
